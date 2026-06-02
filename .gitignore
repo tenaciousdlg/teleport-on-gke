@@ -1,0 +1,14 @@
+# Terraform state — contains sensitive output values
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate.*
+
+# Terraform working directories — provider binaries and module cache
+.terraform/
+
+# Local variable files — never commit real values
+terraform.tfvars
+*.auto.tfvars
+
+# macOS
+.DS_Store

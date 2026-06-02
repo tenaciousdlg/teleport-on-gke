@@ -1,0 +1,22 @@
+export TF_VAR_project_id="your-gcp-project-id"
+export TF_VAR_region="us-central1"
+export TF_VAR_user="you@example.com"
+export TF_VAR_proxy_address="teleport.corp.example.com"
+export TF_VAR_teleport_version="18.6.4"
+export TF_VAR_testbed="testbed-alpha"
+
+# Subnetwork from the 1-cluster control plane VPC.
+# SSH nodes go in the same VPC so they can reach the ILB via Cloud NAT.
+# Derive from 1-cluster outputs:
+#   subnet=$(terraform -chdir=../../control-plane/gke/1-cluster output -raw subnetwork_name)
+#   export TF_VAR_subnetwork="projects/${TF_VAR_project_id}/regions/${TF_VAR_region}/subnetworks/${subnet}"
+export TF_VAR_subnetwork="projects/your-project/regions/us-central1/subnetworks/your-subnet"
+
+# Control plane GKE cluster connection info.
+# Obtain from 1-cluster outputs after terraform apply there:
+#   export TF_VAR_control_plane_cluster_endpoint=$(terraform -chdir=../../control-plane/gke/1-cluster output -raw cluster_endpoint)
+#   export TF_VAR_control_plane_cluster_ca_certificate=$(terraform -chdir=../../control-plane/gke/1-cluster output -raw cluster_ca_certificate)
+#   export TF_VAR_control_plane_cluster_token=$(gcloud auth print-access-token)
+export TF_VAR_control_plane_cluster_endpoint="https://1.2.3.4"
+export TF_VAR_control_plane_cluster_ca_certificate="LS0t..."
+export TF_VAR_control_plane_cluster_token="$(gcloud auth print-access-token)"

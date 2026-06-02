@@ -1,0 +1,18 @@
+export TF_VAR_project_id="your-gcp-project-id"
+export TF_VAR_region="us-central1"
+export TF_VAR_name="presales-gke"
+export TF_VAR_proxy_address="teleport.corp.example.com"
+export TF_VAR_user="you@example.com"
+export TF_VAR_teleport_version="18.6.4"
+export TF_VAR_env="prod"
+export TF_VAR_team="platform"
+
+# Required for Teleport Enterprise. Leave unset or empty for OSS.
+export TF_VAR_license_pem="$(cat /path/to/license.pem)"
+
+# Optional: Cloud DNS managed zone name — enables Let's Encrypt DNS-01 certs
+# and creates the A record for proxy_address. Leave unset for self-signed cert.
+# export TF_VAR_dns_zone_name="corp-example-com"
+
+# Optional: Cloud KMS for CA key protection
+# export TF_VAR_enable_kms="true"

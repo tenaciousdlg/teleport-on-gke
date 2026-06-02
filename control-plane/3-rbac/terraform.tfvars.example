@@ -1,0 +1,25 @@
+export TF_VAR_project_id="your-gcp-project-id"
+export TF_VAR_region="us-central1"
+export TF_VAR_proxy_address="teleport.corp.example.com"
+
+# Google Workspace domain used as the OIDC issuer (e.g. corp.example.com).
+# Must be a public domain — Google OAuth rejects private/internal TLDs.
+export TF_VAR_google_domain="example.com"
+
+# OAuth 2.0 client credentials from GCP Console → APIs & Services → Credentials.
+# Authorized redirect URI must include: https://<proxy_address>/v1/webapi/oidc/callback
+export TF_VAR_oidc_client_id="XXXXXX.apps.googleusercontent.com"
+export TF_VAR_oidc_client_secret="GOCSPX-XXXXXXXXXXXXXXXXXXXXXXXX"
+
+# Teleport username of the access list owner (must match the user running terraform apply).
+# Note: the owner cannot add themselves via Terraform — add your own membership with:
+#   tctl acl users add devs|engineers <your-email>
+export TF_VAR_access_list_owner="admin@example.com"
+
+# Preset access list membership before users log in.
+# devs:      full env:dev access, can request prod-readonly (requires engineer approval)
+# engineers: full env:dev + standing prod-readonly, can approve dev requests, can request prod-access
+export TF_VAR_access_list_members='{
+  "devs":      ["alice@example.com", "bob@example.com"],
+  "engineers": ["carol@example.com"]
+}'
