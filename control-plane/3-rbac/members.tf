@@ -11,13 +11,12 @@ locals {
 }
 
 resource "teleport_access_list_member" "members" {
-  for_each = { for m in local.member_pairs : m.key => m }
+  for_each   = { for m in local.member_pairs : m.key => m }
+  depends_on = [teleport_access_list.devs, teleport_access_list.engineers]
 
   header = {
-    metadata = {
-      name = each.value.member
-    }
-    version = "v1"
+    metadata = { name = each.value.member }
+    version  = "v1"
   }
   spec = {
     access_list     = each.value.access_list

@@ -1,23 +1,6 @@
-variable "project_id" {
-  description = "GCP project ID"
-  type        = string
-}
-
-variable "region" {
-  description = "GCP region (needed for the google provider)"
-  type        = string
-  default     = "us-central1"
-}
-
 variable "proxy_address" {
   description = "Teleport cluster hostname, no port or scheme (e.g. teleport.corp.example.com)"
   type        = string
-}
-
-variable "teleport_namespace" {
-  description = "Kubernetes namespace where Teleport is installed"
-  type        = string
-  default     = "teleport-cluster"
 }
 
 variable "teleport_local_port" {
@@ -27,7 +10,7 @@ variable "teleport_local_port" {
 }
 
 variable "google_domain" {
-  description = "Google Workspace domain for OIDC email claim matching (e.g. corp.example.com)"
+  description = "Google Workspace domain for OIDC claims_to_roles matching (e.g. corp.example.com)"
   type        = string
 }
 
@@ -55,10 +38,4 @@ variable "access_list_members" {
     devs      = []
     engineers = []
   }
-}
-
-variable "autoupdate_mode" {
-  description = "Agent auto-update mode: 'enabled' for automatic rolling updates, 'disabled' to manage manually"
-  type        = string
-  default     = "enabled"
 }

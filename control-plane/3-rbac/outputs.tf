@@ -1,6 +1,6 @@
 output "oidc_connector_name" {
   description = "Name of the Google OIDC connector"
-  value       = kubectl_manifest.oidc_connector_google.name
+  value       = teleport_oidc_connector.google.metadata.name
 }
 
 output "roles_created" {
